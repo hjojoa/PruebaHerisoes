@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="id_form">
+            <p:dataTable id="id_tabla" var="vehiculo" value="#{vehiculoBean.inter.listaVehiculos}">
+                <p:column headerText="Id">
+                    <h:outputText value="#{vehiculo.id}" />
+                </p:column>
+
+                <p:column headerText="Marca vehiculo">
+                    <h:outputText value="#{vehiculo.marca}" />
+                </p:column>
+
+                <p:column headerText="Referencia vehiculo">
+                    <h:outputText value="#{vehiculo.tipo}" />
+                </p:column>
+
+                <p:column headerText="Precio vehiculo">
+                    <h:outputText value="#{vehiculo.precio}" />
+                </p:column>
+                
+            
+            </p:dataTable>
+            
+            <p:commandLink oncomplete="PF('crearVehiculo').show();"
+                update=":id_form">
+                <span>Ingresar vehículo</span>
+            </p:commandLink>
+            
+            <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="true" showEffect="fade" hideEffect="fade">
+                <h:outputText value="Marca"/>
+                <h:inputText value = "#{vehiculoBean.inter.vehiculo.marca}"/>
+                
+                <h:outputText value="referencia"/>
+                <h:inputText value = "#{vehiculoBean.inter.vehiculo.tipo}"/>
+                
+                <h:outputText value="Precio"/>
+                <h:inputText value = "#{vehiculoBean.inter.vehiculo.precio}"/>
+                
+                <p:commandButton
+                    value = "Ingresar Vehiculo"
+                    action= "#{vehiculoBean.agregarVehiculo}"
+                    update="id_form"/>
+            </p:dialog>
+            
+            
+        </h:form>
+    </h:body>
+</html>
+
