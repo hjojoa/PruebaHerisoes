@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Dao;
+package com.pruebaHorisoes.Dao;
 
-import Conexion.Conexion;
-import Intermediaria.Intermediaria;
-import Modelo.Vehiculo;
+import com.pruebaHorisoes.Conexion.Conexion;
+import com.pruebaHorisoes.Intermediaria.Intermediaria;
+import com.pruebaHorisoes.Modelo.Vehiculo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

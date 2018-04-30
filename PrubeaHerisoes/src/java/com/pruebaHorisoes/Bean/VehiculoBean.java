@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Bean;
+package com.pruebaHorisoes.Bean;
 
-import Intermediaria.Intermediaria;
-import Logica.VehiculoLogica;
+import com.pruebaHorisoes.Intermediaria.Intermediaria;
+import com.pruebaHorisoes.Logica.VehiculoLogica;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 

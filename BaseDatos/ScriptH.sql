@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     30/04/2018 11:18:45 a. m.                    */
+/* Created on:     30/04/2018 3:21:18 p. m.                     */
 /*==============================================================*/
 
 
@@ -59,6 +59,7 @@ create table USUARIO (
    USU_NOMBRE           VARCHAR(256)         null,
    USU_CEDULA           INT8                 null,
    USU_TIPO             VARCHAR(50)          null,
+   USU_CONTRASENA       VARCHAR(20)          null,
    constraint PK_USUARIO primary key (ID_USUARIO)
 );
 

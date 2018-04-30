@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Logica;
+package com.pruebaHorisoes.Logica;
 
-import Dao.VehiculoDao;
-import Intermediaria.Intermediaria;
-import Modelo.Vehiculo;
+import com.pruebaHorisoes.Dao.VehiculoDao;
+import com.pruebaHorisoes.Intermediaria.Intermediaria;
+import com.pruebaHorisoes.Modelo.Vehiculo;
 
 /**
  *

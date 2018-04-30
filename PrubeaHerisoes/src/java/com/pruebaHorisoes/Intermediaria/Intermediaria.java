@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Intermediaria;
+package com.pruebaHorisoes.Intermediaria;
 
-import Modelo.Vehiculo;
+import com.pruebaHorisoes.Modelo.Vehiculo;
 import java.util.ArrayList;
 import java.util.List;
 
