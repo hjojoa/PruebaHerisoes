@@ -7,7 +7,6 @@ package com.pruebaHorisoes.Logica;
 
 import com.pruebaHorisoes.Dao.VehiculoDao;
 import com.pruebaHorisoes.Intermediaria.Intermediaria;
-import com.pruebaHorisoes.Modelo.Vehiculo;
 
 /**
  *
@@ -29,7 +28,6 @@ public class VehiculoLogica
     public void editarVehiculo(Intermediaria inter)
     {
         dao.editarVehiculo(inter);
-       
     }
     
     public void eliminarVehiculo(Intermediaria inter)
