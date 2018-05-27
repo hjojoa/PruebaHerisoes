@@ -5,17 +5,15 @@
         <group>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Dao/VehiculoDao.java</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Intermediaria/Intermediaria.java</file>
-            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/web/vendedor.xhtml</file>
-            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/web/salir.xhtml</file>
-            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Bean/SesionControlerBean.java</file>
-            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Logica/VehiculoLogica.java</file>
-            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/web/WEB-INF/web.xml</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Intermediaria/IntermediariaUsuario.java</file>
+            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/web/vendedor.xhtml</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/web/login.xhtml</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Dao/UsuarioDao.java</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Bean/VehiculoBean.java</file>
+            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Bean/SesionControlerBean.java</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/web/index.xhtml</file>
             <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Logica/UsuarioLogica.java</file>
+            <file>file:/G:/Mi%20unidad/PruebasTrabajo/Horisoes/PruebaHerisoes/PrubeaHerisoes/src/java/com/pruebaHorisoes/Logica/VehiculoLogica.java</file>
         </group>
     </open-files>
 </project-private>
