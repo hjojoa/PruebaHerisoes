@@ -7,6 +7,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Facelet Title</title>
+        <f:event type="preRenderView" listener="#{sesionControlerBean.verificarSesion('Vendedor')}"/>
     </h:head>
     <h:body>
         <h:form id="id_form">
@@ -34,6 +35,8 @@
                 update=":id_form">
                 <span>Ingresar vehículo</span>
             </p:commandLink>
+            
+            <p:commandButton actionListener="#{sesionControlerBean.cerrarSesion()}" value="Cerrar Sesión"  />
             
             <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="true" showEffect="fade" hideEffect="fade">
                 <h:outputText value="Marca"/>

@@ -7,6 +7,8 @@ package com.pruebaHorisoes.Logica;
 
 import com.pruebaHorisoes.Dao.UsuarioDao;
 import com.pruebaHorisoes.Intermediaria.IntermediariaUsuario;
+import com.pruebaHorisoes.Modelo.Usuario;
+import java.sql.SQLException;
 
 /**
  *
@@ -28,6 +30,13 @@ public class UsuarioLogica
     public void buscarUsuarioPorCedula(IntermediariaUsuario inter)
     {
         dao.encontrarPorCedula(inter);
+    }
+    public Usuario validarPorUsuario(IntermediariaUsuario inter) throws SQLException
+    {
+        Integer cedula = inter.getCedulaIngresada();
+        String contrasena = inter.getContrasenaIngresada();
+        Usuario usuario =dao.ValidarUsuario(cedula, contrasena);
+        return usuario;
     }
     
 }

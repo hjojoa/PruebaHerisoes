@@ -10,10 +10,14 @@ import com.pruebaHorisoes.Logica.UsuarioLogica;
 import com.pruebaHorisoes.Logica.VehiculoLogica;
 import com.pruebaHorisoes.Modelo.Usuario;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import org.primefaces.context.RequestContext;
@@ -27,144 +31,93 @@ import org.primefaces.context.RequestContext;
 public class SesionControlerBean 
 {
     IntermediariaUsuario inter;
-    Usuario usuario;
     UsuarioLogica usuarioLogica;
+
+    public IntermediariaUsuario getInter() {
+        return inter;
+    }
+
+    public void setInter(IntermediariaUsuario inter) {
+        this.inter = inter;
+    }
+
+    public UsuarioLogica getUsuarioLogica() {
+        return usuarioLogica;
+    }
+
+    public void setUsuarioLogica(UsuarioLogica usuarioLogica) {
+        this.usuarioLogica = usuarioLogica;
+    }
+    
+    
     
     public SesionControlerBean()
     {
-        if(usuario == null)
-        {
-            usuario = new Usuario();
-        }
-        if(inter== null)
-        {
-            inter = new IntermediariaUsuario();
-        }
-        if(usuarioLogica == null)
-        {
-            usuarioLogica = new UsuarioLogica();
-        }
+        inter = new IntermediariaUsuario();
+        usuarioLogica = new UsuarioLogica();
+        
     }
 
     
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    public void revisarSesion()
+    public String iniciarSesion()
     {
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
-        try 
+        
+        try
         {
-            System.out.println("Antes de ingresar: "+usuario.getNombre());
-            if(usuario.getCedula()!=null)
+            Usuario usuario = usuarioLogica.validarPorUsuario(inter);
+            if(usuario.getTipo().equalsIgnoreCase("Administrador"))
             {
-                redirigir();
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+                return "faces/index.xhtml?faces-redirect=true";
             }
-            
-        } 
-        catch (Exception e) 
-        {
-            System.out.println("algo fallo");
-        }
-    }
-    public void validarSesion()
-    {
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
-        try 
-        {
-            System.out.println("Antes de ingresar: "+req.getSession().getId());
-            if(usuario.getCedula()==null)
+            else if(usuario.getTipo().equalsIgnoreCase("Vendedor"))
             {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/PrubeaHerisoes.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+                return "faces/vendedor.xhtml?faces-redirect=true";
             }
             else
             {
-                //FacesContext.getCurrentInstance().getExternalContext().redirect("publico/Login/login.xhtml");
+                return "faces/login.xhtml";
             }
         }
-        catch (Exception e) 
+        catch(Exception e)
         {
-            System.out.println("algo fallo");
-        } 
-    }
-    private void redirigir()
-    {
-        try
-        {
-            switch(usuario.getTipo())
-            {
-                case "Administrador":
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/PrubeaHerisoes/index.xhtml");
-                    break;
-                case "Vendedor":
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("/PrubeaHerisoes/vendedor.xhtml");
-                    break;
-                
-            }
-        }
-        catch (IOException ex) 
-        {
-            try
-            {
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/PrubeaHerisoes/salir.xhtml");
-            }
-            catch(IOException e)
-            {
-                
-            }
-        }
-    }
-    public void login() throws IOException 
-    {
-       
-        RequestContext requestContext = RequestContext.getCurrentInstance();
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
-        if (req.getUserPrincipal() == null) {
-            try {
-                System.out.println("Ingreso: "+req.getSession().getId());
-                req.login(usuario.getTipo(), usuario.getContrasena());
-                usuarioLogica.buscarUsuarioPorCedula(this.inter);
-                usuario = inter.getUsuario();
-                if(!usuario.getCedula().equals(usuario.getCedula()))
-                    logout();
-                this.redirigir();
-                
-            } catch (ServletException ex) {
-              // Logger.getLogger(SessionController.class.getName()).log(Level.SEVERE, null, ex);
-               mensajeErrorAut();
-                
-            }
-        }
-    }
-    public void logout() throws IOException, ServletException {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        HttpServletRequest req = (HttpServletRequest) fc.getExternalContext().getRequest();
-        try {
-            
-            req.logout();
-            req.getSession().invalidate();
-            fc.getExternalContext().invalidateSession();
-            System.out.println("logout");
-            FacesContext.getCurrentInstance().getExternalContext().redirect("../../index.xhtml");
-
-        } catch (ServletException e) {
-            fc.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "FAILED", "Logout failed on backend"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error","Usuario o contraseña incorrecta"));
+            return null;
         }
 
     }
-    
-      public void mensajeErrorAut() {
-        addMessage("Datos No Validos .", "");
+
+        public void verificarSesion(String tipoPagina)
+        {
+            try 
+            {
+                Usuario usuario = (Usuario)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+                if(usuario!=null)
+                    {
+                    if(usuario.getTipo().equalsIgnoreCase("Administrador") && !tipoPagina.equalsIgnoreCase("Administrador") )
+                    {
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+                    }
+                    else if(usuario.getTipo().equalsIgnoreCase("Vendedor") && !tipoPagina.equalsIgnoreCase("Vendedor"))
+                    {
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+                    }
+                }
+                else
+                {
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+                }
+            } 
+            catch (Exception e) 
+            {
+            }
         }
-      private void addMessage(String summary, String detail) {
         
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, summary, detail);
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }
+        public void cerrarSesion()
+        {
+            FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+           
+        }
+
 }

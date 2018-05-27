@@ -15,12 +15,13 @@ public class IntermediariaUsuario
 {
     private Usuario usuario;
     private Integer cedulaIngresada;
-    
+    private String contrasenaIngresada;
+
     public IntermediariaUsuario()
     {
         usuario = new Usuario();
     }
-
+    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -35,6 +36,14 @@ public class IntermediariaUsuario
 
     public void setCedulaIngresada(Integer cedulaIngresada) {
         this.cedulaIngresada = cedulaIngresada;
+    }
+
+    public String getContrasenaIngresada() {
+        return contrasenaIngresada;
+    }
+
+    public void setContrasenaIngresada(String contrasenaIngresada) {
+        this.contrasenaIngresada = contrasenaIngresada;
     }
     
     
