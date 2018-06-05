@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <title>Facelet Title</title>
+                <h:outputStylesheet name="css/index.css"/>
+               
+            </f:facet>
+        </h:head>
+        
+            <p:layout fullPage="true">
+
+                <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true">
+                    <div id="img" >
+                            <p:commandButton actionListener="#{sesionControlerBean.cerrarSesion()}" value="Cerrar Sesión" style="float: right; " />
+                            <!--<img src="../resources/images/imagenHeader.png" /> -->
+                            
+                            
+                        </div>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="90" closable="true" collapsible="true">
+                    <p style="text-align: center; font-size: 13px" >Hamilton Jojoa </p> 
+                    <p style="text-align: center; font-size: 13px">hamiltonjojoa@gmail.com </p> 
+                        
+                    </p:layoutUnit>
+
+        
+                <div id="menu"  >
+                    <ui:insert name="menu"/>
+                    <p:layoutUnit position="west" size="175" header="Left" collapsible="false">
+                        <p:menu>
+                            <p:submenu label="Resources">
+                                <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                                <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                                <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                            </p:submenu>
+
+                        </p:menu>
+                    </p:layoutUnit>
+                </div>
+                
+                <div id="centroPrincipal"  >
+                    <p:layoutUnit position="center">
+                        <ui:insert name="centroPrincipal">Content</ui:insert>
+                    </p:layoutUnit>
+                </div>
+
+            </p:layout>
+        
+    </f:view>
+</html>
+

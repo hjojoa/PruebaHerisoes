@@ -20,20 +20,13 @@
                      <div id="inicio" >
                         <h:form id="id_form"  >
                             <p:messages autoUpdate="true" showDetail="true"/>
-                            
-                            <br/>
-                            
-                               <!--<h:panelGrid columns="2" > !-->
-
-                               <p:outputLabel for="txtUsuario" value="Usuario: " />&lrm;
+                             <br/>
+                             <p:outputLabel for="txtUsuario" value="Usuario: " />&lrm;
                                     <p:inputText id="txtUsuario" value="#{sesionControlerBean.inter.cedulaIngresada}"  placeholder="Cédula" required="true"  />&lrm;
                                     <p:outputLabel for="txtClave" value=" Clave: "/>&lrm;
                                     <p:inputText type="password" id="txtClave" value="#{sesionControlerBean.inter.contrasenaIngresada}" required="true" placeholder="Contraseña"/>&lrm;
                                     <p:commandButton icon="ui-icon-key" value="Iniciar Sesión" action="#{sesionControlerBean.iniciarSesion()}"/>
-
-<!--                                </h:panelGrid>!-->
-                                
-                        </h:form>
+                         </h:form>
                     </div>   
                 </p:layoutUnit>
                 
@@ -41,7 +34,7 @@
                     <p style="text-align: center; font-size: 13px" >Hamilton Jojoa </p> 
                     <p style="text-align: center; font-size: 13px">hamiltonjojoa@gmail.com </p> 
                         
-                    </p:layoutUnit>
+                </p:layoutUnit>
                
                 <p:layoutUnit position="center" >
                     

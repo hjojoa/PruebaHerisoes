@@ -70,16 +70,16 @@ public class SesionControlerBean
             if(usuario.getTipo().equalsIgnoreCase("Administrador"))
             {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-                return "faces/index.xhtml?faces-redirect=true";
+                return "faces/Administrador/Administrador.xhtml?faces-redirect=true";
             }
             else if(usuario.getTipo().equalsIgnoreCase("Vendedor"))
             {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-                return "faces/vendedor.xhtml?faces-redirect=true";
+                return "faces/Vendedor/Vendedor.xhtml?faces-redirect=true";
             }
             else
             {
-                return "faces/login.xhtml";
+                return "faces/login.xhtml?faces-redirect=true";
             }
         }
         catch(Exception e)
@@ -99,16 +99,16 @@ public class SesionControlerBean
                     {
                     if(usuario.getTipo().equalsIgnoreCase("Administrador") && !tipoPagina.equalsIgnoreCase("Administrador") )
                     {
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
                     }
                     else if(usuario.getTipo().equalsIgnoreCase("Vendedor") && !tipoPagina.equalsIgnoreCase("Vendedor"))
                     {
-                        FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+                        FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
                     }
                 }
                 else
                 {
-                    FacesContext.getCurrentInstance().getExternalContext().redirect("faces/login.xhtml");
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
                 }
             } 
             catch (Exception e) 

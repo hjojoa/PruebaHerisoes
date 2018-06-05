@@ -11,142 +11,105 @@
             <f:facet name="first">
                 <title>Facelet Title</title>
                 <h:outputStylesheet name="css/index.css"/>
-                <f:event type="preRenderView" listener="#{sesionControlerBean.verificarSesion('Administrador')}"/>
+               <f:event type="preRenderView" listener="#{sesionControlerBean.verificarSesion('Administrador')}"/>
             </f:facet>
         </h:head>
         
-            <p:layout fullPage="true">
+        <h:body>
+           <h:form id="id_form">
+               <p:dataTable widgetVar="vehiculo" id="id_tabla" var="vehiculo" value="#{vehiculoBean.inter.listaVehiculos}" paginator="true"
+                            paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                            rowsPerPageTemplate="5,15,30" emptyMessage="no hay vehículos registrados." >
 
-                <p:layoutUnit position="north" size="150" resizable="true" closable="true" collapsible="true">
-                    <div id="img" >
-                            <p:commandButton actionListener="#{sesionControlerBean.cerrarSesion()}" value="Cerrar Sesión" style="float: right; " />
-                            <!--<img src="../resources/images/imagenHeader.png" /> -->
-                            
-                            
-                        </div>
-                    </p:layoutUnit>
+                    <p:column headerText="Id">
+                       <h:outputText value="#{vehiculo.id}" />
+                    </p:column>
 
-                    <p:layoutUnit position="south" size="90" closable="true" collapsible="true">
-                    <p style="text-align: center; font-size: 13px" >Hamilton Jojoa </p> 
-                    <p style="text-align: center; font-size: 13px">hamiltonjojoa@gmail.com </p> 
-                        
-                    </p:layoutUnit>
+                    <p:column headerText="Marca vehiculo">
+                        <h:outputText value="#{vehiculo.marca}" />
+                    </p:column>
 
-                    <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
-                        <p:menu>
-                            <p:submenu label="Resources">
-                                <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
-                                <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
-                                <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
-                                <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+                    <p:column headerText="Referencia vehiculo">
+                        <h:outputText value="#{vehiculo.tipo}" />
+                    </p:column>
 
-                            </p:submenu>
+                    <p:column headerText="Precio vehiculo">
+                        <h:outputText value="#{vehiculo.precio}" />
+                    </p:column>
 
-                        </p:menu>
-                    </p:layoutUnit>
-
-                <p:layoutUnit position="center" id="centro">
-                    <h:form id="id_form">
-                        <p:dataTable id="id_tabla" var="vehiculo" value="#{vehiculoBean.inter.listaVehiculos}" paginator="true"
-                                     paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                                  rowsPerPageTemplate="5,15,30" emptyMessage="No se han registrado practicas o no se encuentra ninguna con el criterio de busqueda.">
-                            <p:column headerText="Id">
-                                <h:outputText value="#{vehiculo.id}" />
-                            </p:column>
-
-                            <p:column headerText="Marca vehiculo">
-                                <h:outputText value="#{vehiculo.marca}" />
-                            </p:column>
-
-                            <p:column headerText="Referencia vehiculo">
-                                <h:outputText value="#{vehiculo.tipo}" />
-                            </p:column>
-
-                            <p:column headerText="Precio vehiculo">
-                                <h:outputText value="#{vehiculo.precio}" />
-                            </p:column>
-
-                             <p:column headerText="Acciones">
-                                 <p:commandButton
-                                     update="id_form"
-                                     icon="ui-icon-disk"
-                                     oncomplete="PF('editarVehiculo').show()"
-                                     process="@this">
-                                     <f:setPropertyActionListener value="#{vehiculo}" target="#{vehiculoBean.inter.vehiculoSeleccionado}"/>  
-                                </p:commandButton>
-
-                                 <p:commandButton 
-                                      icon ="ui-icon-trash"
-                                      id="withIcon3"
-                                      update=":id_form:id_tabla" 
-                                      action="#{vehiculoBean.eliminarVehiculo()}"
-                                      >
-                                     <f:setPropertyActionListener value="#{vehiculo}" target="#{vehiculoBean.inter.vehiculoSeleccionado}" />
-                                      <p:confirm header="Confirmación" message="¿Esta seguro de eliminar el vehiculo seleccionado?" icon="ui-icon-alert" />
-                                  </p:commandButton>
-                                 
-                                <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-                                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
-                                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
-                                </p:confirmDialog>
-                            </p:column>
-                        </p:dataTable>
-
-                        
-
-                        <p:commandButton 
-                            value="Agregar vehículo"
-                            oncomplete="PF('crearVehiculo').show();"
-                            update=":id_form">
-                            
+                     <p:column headerText="Acciones">
+                         <p:commandButton
+                             update="id_form"
+                             icon="ui-icon-disk"
+                             oncomplete="PF('editarVehiculo').show()"
+                             process="@this">
+                             <f:setPropertyActionListener value="#{vehiculo}" target="#{vehiculoBean.inter.vehiculoSeleccionado}"/>  
                         </p:commandButton>
 
-                        <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="false" showEffect="fade" hideEffect="fade">
-                            <h:outputText value="Marca"/>
-                            <h:inputText value = "#{vehiculoBean.inter.vehiculo.marca}"/>
+                         <p:commandButton 
+                              icon ="ui-icon-trash"
+                              id="withIcon3"
+                              update=":id_form:id_tabla" 
+                              action="#{vehiculoBean.eliminarVehiculo()}"
+                              >
+                             <f:setPropertyActionListener value="#{vehiculo}" target="#{vehiculoBean.inter.vehiculoSeleccionado}" />
+                              <p:confirm header="Confirmación" message="¿Esta seguro de eliminar el vehiculo seleccionado?" icon="ui-icon-alert" />
+                          </p:commandButton>
 
-                            <h:outputText value="referencia"/>
-                            <h:inputText value = "#{vehiculoBean.inter.vehiculo.tipo}"/>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                    </p:column>
+                </p:dataTable>
 
-                            <h:outputText value="Precio"/>
-                            <h:inputText value = "#{vehiculoBean.inter.vehiculo.precio}"/>
+                        
 
-                            <p:commandButton
-                                value = "Ingresar Vehiculo"
-                                action= "#{vehiculoBean.agregarVehiculo}"
-                                update=":id_form:id_tabla"
-                                oncomplete="PF('crearVehiculo').hide()"/>
-                        </p:dialog>
+                <p:commandButton 
+                    value="Agregar vehículo"
+                    oncomplete="PF('crearVehiculo').show();"
+                    update=":id_form">
+
+                </p:commandButton>
+
+                <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="false" showEffect="fade" hideEffect="fade">
+                    <h:outputText value="Marca"/>
+                    <h:inputText value = "#{vehiculoBean.inter.vehiculo.marca}"/>
+
+                    <h:outputText value="referencia"/>
+                    <h:inputText value = "#{vehiculoBean.inter.vehiculo.tipo}"/>
+
+                    <h:outputText value="Precio"/>
+                    <h:inputText value = "#{vehiculoBean.inter.vehiculo.precio}"/>
+
+                    <p:commandButton
+                        value = "Ingresar Vehiculo"
+                        action= "#{vehiculoBean.agregarVehiculo}"
+                        update=":id_form:id_tabla"
+                        oncomplete="PF('crearVehiculo').hide()"/>
+                </p:dialog>
             
                         
-                        <p:dialog header="editar información del vehiculo" widgetVar="editarVehiculo" modal="false"  showEffect="clip"  hideEffect="explode">
-                                <h:outputText value="nombre"/>
-                                <h:inputText value = "#{vehiculoBean.inter.vehiculoSeleccionado.marca}"/>
+                <p:dialog header="editar información del vehiculo" widgetVar="editarVehiculo" modal="false"  showEffect="clip"  hideEffect="explode">
+                    <h:outputText value="nombre"/>
+                    <h:inputText value = "#{vehiculoBean.inter.vehiculoSeleccionado.marca}"/>
 
-                                <h:outputText value="Tipo"/>
-                                <h:inputText value = "#{vehiculoBean.inter.vehiculoSeleccionado.tipo}"/>
+                    <h:outputText value="Tipo"/>
+                    <h:inputText value = "#{vehiculoBean.inter.vehiculoSeleccionado.tipo}"/>
 
-                                <h:outputText value="precio"/>
-                                <h:inputText value = "#{vehiculoBean.inter.vehiculoSeleccionado.precio}"/>
+                    <h:outputText value="precio"/>
+                    <h:inputText value = "#{vehiculoBean.inter.vehiculoSeleccionado.precio}"/>
 
-                                <p:commandButton
-                                    value = "Guardar edición"
-                                    action= "#{vehiculoBean.editarVehiculo()}" 
-                                    update=":id_form:id_tabla"
-                                    oncomplete="PF('editarVehiculo').hide()"
-                                    />
-                            </p:dialog>
+                    <p:commandButton
+                        value = "Guardar edición"
+                        action= "#{vehiculoBean.editarVehiculo()}" 
+                        update=":id_form:id_tabla"
+                        oncomplete="PF('editarVehiculo').hide()"
+                        />
+                </p:dialog>
                         
-                    </h:form>
-                         
-                </p:layoutUnit>
-
-                
-            
-                
-                
-            </p:layout>
-        
+            </h:form>
+       </h:body>
     </f:view>
 </html>
 
