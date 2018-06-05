@@ -10,6 +10,8 @@ import com.pruebaHorisoes.Logica.UsuarioLogica;
 import com.pruebaHorisoes.Logica.VehiculoLogica;
 import com.pruebaHorisoes.Modelo.Usuario;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
@@ -30,9 +32,9 @@ import org.primefaces.context.RequestContext;
 @ManagedBean
 public class SesionControlerBean 
 {
-    IntermediariaUsuario inter;
-    UsuarioLogica usuarioLogica;
-
+    private IntermediariaUsuario inter;
+    private UsuarioLogica usuarioLogica;
+   
     public IntermediariaUsuario getInter() {
         return inter;
     }

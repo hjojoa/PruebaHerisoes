@@ -1,0 +1,34 @@
+#principal{
+    position: relative;
+    background-color: #036fab;
+    color: white;
+    padding: 8px;
+    margin: 0px 0px 10px 0px;
+    height: 70px;
+    width: 100px;
+    
+}
+
+#headerCss{
+    width: auto;
+    height: 600px;
+    background: url("../images/imgHeader.jpg") no-repeat;
+    
+}
+
+#inicio{
+    float: right;
+}
+
+.addEspacio{
+    margin-bottom: 10px;
+}
+
+#img{
+   background-image:  url("../images/imagenHeader.png");
+   width: auto;
+   height: 150px;
+   
+}
+
+
