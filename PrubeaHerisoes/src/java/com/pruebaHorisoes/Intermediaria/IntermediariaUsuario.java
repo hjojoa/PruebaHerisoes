@@ -5,7 +5,9 @@
  */
 package com.pruebaHorisoes.Intermediaria;
 
+import com.pruebaHorisoes.Modelo.InterfaceMenu;
 import com.pruebaHorisoes.Modelo.Usuario;
+import java.util.List;
 
 /**
  *
@@ -13,9 +15,30 @@ import com.pruebaHorisoes.Modelo.Usuario;
  */
 public class IntermediariaUsuario 
 {
+    private List<InterfaceMenu> listaMenus;
     private Usuario usuario;
     private Integer cedulaIngresada;
     private String contrasenaIngresada;
+    private String rolSeleccionado;
+
+    public List<InterfaceMenu> getListaMenus() {
+        return listaMenus;
+    }
+
+    public void setListaMenus(List<InterfaceMenu> listaMenus) {
+        this.listaMenus = listaMenus;
+    }
+
+    
+    
+    public String getRolSeleccionado() {
+        return rolSeleccionado;
+    }
+
+    public void setRolSeleccionado(String rolSeleccionado) {
+        this.rolSeleccionado = rolSeleccionado;
+    }
+    
 
     public IntermediariaUsuario()
     {

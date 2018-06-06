@@ -6,6 +6,7 @@
 package com.pruebaHorisoes.Logica;
 
 import com.pruebaHorisoes.Dao.UsuarioDao;
+import com.pruebaHorisoes.Intermediaria.IntermediariaInterfaces;
 import com.pruebaHorisoes.Intermediaria.IntermediariaUsuario;
 import com.pruebaHorisoes.Modelo.Usuario;
 import java.sql.SQLException;
@@ -37,6 +38,15 @@ public class UsuarioLogica
         String contrasena = inter.getContrasenaIngresada();
         Usuario usuario =dao.ValidarUsuario(cedula, contrasena);
         return usuario;
+    }
+    
+    public void cargarMenusAdministrador(IntermediariaUsuario inter)
+    {
+        inter.setListaMenus(dao.listarMenuAdministrador());
+    }
+    public void cargarMenusVendedor(IntermediariaUsuario inter)
+    {
+        inter.setListaMenus(dao.listarMenuVendedor());
     }
     
 }

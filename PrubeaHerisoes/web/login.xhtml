@@ -39,7 +39,8 @@
                 <p:layoutUnit position="center" >
                     
                     <div >
-                        <p:galleria value="#{imagenesBean.listaImagenes}" var="imagenes" panelWidth="700" panelHeight="500" showCaption="true" style="display: block; margin: auto">
+                        
+                        <p:galleria value="#{interfaceBean.listaImagenes}" var="imagenes" panelWidth="700" panelHeight="500" showCaption="true" style="display: block; margin: auto">
                             <p:graphicImage name="images/#{imagenes}" alt="vehiculos disponibles " title="#{imagenes}"/>
                         </p:galleria>
                     </div>

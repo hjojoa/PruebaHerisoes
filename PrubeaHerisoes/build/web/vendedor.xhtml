@@ -16,6 +16,7 @@
         <h:body>
           
             <h:form id="id_form">
+                
                 <p:dataTable id="id_tabla" var="vehiculo" value="#{vehiculoBean.inter.listaVehiculos}" paginator="true"
                              paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,15,30" emptyMessage="no hay vehículos registrados.">
@@ -43,7 +44,7 @@
                     <span>Ingresar vehículo</span>
                 </p:commandLink>
 
-                <p:commandButton actionListener="#{sesionControlerBean.cerrarSesion()}" value="Cerrar Sesión"  />
+                
 
                 <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="true" showEffect="fade" hideEffect="fade">
                     <h:outputText value="Marca"/>

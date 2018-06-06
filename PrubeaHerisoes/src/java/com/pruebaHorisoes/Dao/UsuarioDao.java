@@ -8,6 +8,7 @@ package com.pruebaHorisoes.Dao;
 import com.pruebaHorisoes.Conexion.Conexion;
 import com.pruebaHorisoes.Intermediaria.Intermediaria;
 import com.pruebaHorisoes.Intermediaria.IntermediariaUsuario;
+import com.pruebaHorisoes.Modelo.InterfaceMenu;
 import com.pruebaHorisoes.Modelo.Usuario;
 import com.pruebaHorisoes.Modelo.Vehiculo;
 import java.sql.Connection;
@@ -167,6 +168,70 @@ public class UsuarioDao
             return null;
         }
     }
+    public List<InterfaceMenu> listarMenuAdministrador()
+    {
+         List<InterfaceMenu> listaMenus = new ArrayList();
+        
+        try
+        {
+            Conexion conexion = new Conexion();
+            conexion.realizarConexion();
+            
+            this.conexion = conexion.getConxion();
+            st = this.conexion.createStatement();
+            
+            String sql = "SELECT * FROM opcion_menu where menu_rol_asociado = 'Administrativo'";
+            
+            ResultSet resultSet = st.executeQuery(sql);
+            while(resultSet.next())
+            {
+                InterfaceMenu menu = new InterfaceMenu();
+                menu.setMenuNombre(resultSet.getString("menu_nombre"));
+                menu.setRolAsociado(resultSet.getString("menu_rol_asociado"));
+                listaMenus.add(menu);
+            }
+            st.close();
+            this.conexion.close();
+            
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Ocurrio un error listando las opciones de menú: "+e);
+        }
+        return listaMenus;
+    }
     
+    public List<InterfaceMenu> listarMenuVendedor()
+    {
+         List<InterfaceMenu> listaMenus = new ArrayList();
+        
+        try
+        {
+            Conexion conexion = new Conexion();
+            conexion.realizarConexion();
+            
+            this.conexion = conexion.getConxion();
+            st = this.conexion.createStatement();
+            
+            String sql = "SELECT * FROM opcion_menu where menu_rol_asociado = 'Vendedor'";
+            
+            ResultSet resultSet = st.executeQuery(sql);
+            while(resultSet.next())
+            {
+                InterfaceMenu menu = new InterfaceMenu();
+                menu.setMenuNombre(resultSet.getString("menu_nombre"));
+                menu.setRolAsociado(resultSet.getString("menu_rol_asociado"));
+                listaMenus.add(menu);
+            }
+            st.close();
+            this.conexion.close();
+            
+        }
+        catch(SQLException e)
+        {
+            System.out.println("Ocurrio un error listando las opciones de menú: "+e);
+        }
+        return listaMenus;
+    }
     
 }

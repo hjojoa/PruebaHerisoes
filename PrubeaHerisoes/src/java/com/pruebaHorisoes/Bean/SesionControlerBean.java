@@ -7,22 +7,16 @@ package com.pruebaHorisoes.Bean;
 
 import com.pruebaHorisoes.Intermediaria.IntermediariaUsuario;
 import com.pruebaHorisoes.Logica.UsuarioLogica;
-import com.pruebaHorisoes.Logica.VehiculoLogica;
+import com.pruebaHorisoes.Modelo.InterfaceMenu;
 import com.pruebaHorisoes.Modelo.Usuario;
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.inject.Named;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import org.primefaces.context.RequestContext;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.DefaultSubMenu;
+import org.primefaces.model.menu.MenuModel;
 
 /**
  *
@@ -34,6 +28,16 @@ public class SesionControlerBean
 {
     private IntermediariaUsuario inter;
     private UsuarioLogica usuarioLogica;
+    private MenuModel menu;
+
+    public MenuModel getMenu() {
+        return menu;
+    }
+
+    public void setMenu(MenuModel menu) {
+        this.menu = menu;
+    }
+    
    
     public IntermediariaUsuario getInter() {
         return inter;
@@ -104,6 +108,33 @@ public class SesionControlerBean
                     else if(usuario.getTipo().equalsIgnoreCase("Vendedor") && !tipoPagina.equalsIgnoreCase("Vendedor"))
                     {
                         FacesContext.getCurrentInstance().getExternalContext().redirect("../login.xhtml");
+                    }
+                    if(usuario.getTipo().equalsIgnoreCase("Administrador") && tipoPagina.equalsIgnoreCase("Administrador") )
+                    {
+                        usuarioLogica.cargarMenusAdministrador(inter);
+                        menu = new DefaultMenuModel();
+                        DefaultSubMenu submenu = new DefaultSubMenu();
+                        List<InterfaceMenu> listado = inter.getListaMenus();
+                        for(int i = 0; i<listado.size();i++)
+                        {
+                            String nombre = listado.get(i).getMenuNombre();
+                            submenu = new DefaultSubMenu(nombre);
+                            menu.addElement(submenu);
+                        }
+                        this.inter.setRolSeleccionado("Administrador");
+                    }
+                    if(usuario.getTipo().equalsIgnoreCase("Vendedor") && tipoPagina.equalsIgnoreCase("Vendedor"))
+                    {
+                        usuarioLogica.cargarMenusVendedor(inter);
+                        menu = new DefaultMenuModel();
+                        DefaultSubMenu submenu = new DefaultSubMenu();
+                        List<InterfaceMenu> listado = inter.getListaMenus();
+                        for(int i = 0; i<listado.size();i++)
+                        {
+                            String nombre = listado.get(i).getMenuNombre();
+                            submenu = new DefaultSubMenu(nombre);
+                            menu.addElement(submenu);
+                        }
                     }
                 }
                 else
