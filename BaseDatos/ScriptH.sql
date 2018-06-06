@@ -98,3 +98,11 @@ alter table OBSERVAR
       references VEHICULO (ID_VEHICULO)
       on delete restrict on update restrict;
 
+create table opcion_menu(
+	id_menu SERIAL,
+    menu_nombre CHARACTER(100),
+    menu_rol_asociado CHARACTER(100),
+    
+    PRIMARY KEY (id_menu)
+);
+

@@ -17,6 +17,13 @@
           
             <h:form id="id_form">
                 
+                <p:commandButton
+                        value = "Agregar vehículo"
+                        action= "#{vehiculoBean.agregarVehiculo}"
+                        icon="ui-icon-plus"
+                        update=":id_form:id_tabla"
+                        oncomplete="PF('crearVehiculo').show()"/>
+                
                 <p:dataTable id="id_tabla" var="vehiculo" value="#{vehiculoBean.inter.listaVehiculos}" paginator="true"
                              paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                      rowsPerPageTemplate="5,15,30" emptyMessage="no hay vehículos registrados.">
@@ -39,14 +46,11 @@
 
                 </p:dataTable>
 
-                <p:commandLink oncomplete="PF('crearVehiculo').show();"
-                    update=":id_form">
-                    <span>Ingresar vehículo</span>
-                </p:commandLink>
+                
 
                 
 
-                <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="true" showEffect="fade" hideEffect="fade">
+                <p:dialog header=" información del vehículo" widgetVar="crearVehiculo" modal="false" showEffect="clip" hideEffect="explode">
                     <h:outputText value="Marca"/>
                     <h:inputText value = "#{vehiculoBean.inter.vehiculo.marca}"/>
 
@@ -59,7 +63,8 @@
                     <p:commandButton
                         value = "Ingresar Vehiculo"
                         action= "#{vehiculoBean.agregarVehiculo}"
-                        update="id_form"/>
+                        update=":id_form:id_tabla"
+                        oncomplete="PF('crearVehiculo').hide()"/>
                 </p:dialog>
 
 
